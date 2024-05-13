@@ -15,16 +15,17 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
-            // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
-            // *IMPLEMENTE AQUI*
-            if (true)
+            // Verifica se a capacidade é maior ou igual ao número de hóspedes sendo recebido
+            int quantidadeHospedes = hospedes.Count();
+            bool capacidade = (quantidadeHospedes <= Suite.Capacidade) ? true : false;
+            if (capacidade)
             {
                 Hospedes = hospedes;
             }
             else
             {
-                // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
-                // *IMPLEMENTE AQUI*
+                // Retorna uma exception caso a capacidade seja menor que o número de hóspedes recebido
+                throw new InvalidOperationException("A capacidade da suíte é menor que o número de hóspedes recebidos.");
             }
         }
 
@@ -35,25 +36,22 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
+            // Retorna a quantidade de hóspedes
+            return Hospedes.Count();
         }
 
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
-            // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
-            decimal valor = 0;
+            // Retorna o valor da diária
+            decimal valor = DiasReservados * Suite.ValorDiaria;
 
             // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            bool desconto = (DiasReservados >= 10) ? true : false;
+            if (desconto)
             {
-                valor = 0;
+                decimal valorDesconto = 0.1m * valor;
+                valor -= valorDesconto;
             }
-
             return valor;
         }
     }
